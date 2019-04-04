@@ -218,7 +218,7 @@ function drawGame() {
     pos.y += (joyPos.y - pos.y) / dist * (dash ? dashSpeed : (characterSpeed * dT)) || 0;
   }
   if (!waitSafe) {
-    let rm = 230|0, gm = 60|0, bm = 110|0;
+    //let rm = 230|0, gm = 60|0, bm = 110|0;
     /*let data = context.getImageData(Math.round(pos.x - playerRadius), Math.round(pos.y - playerRadius), 2 * playerRadius, 2 * playerRadius).data;
     let matchScore;
     for (var p = 0; p < data.length; p++) {
@@ -227,11 +227,11 @@ function drawGame() {
       let b = data[p++];
       matchScore += 1 / ((Math.abs(1/(r - rm)) || 0) + (Math.abs(1/(g - gm)) || 0) + (Math.abs(1/(g - gm)) || 0)) || 0
     }*/
-    avgContext.drawImage(canvas, Math.round(pos.x - playerRadius), Math.round(pos.y - playerRadius), 2 * playerRadius, 2 * playerRadius, 0, 0, 1, 1);
+    /*avgContext.drawImage(canvas, Math.round(pos.x - playerRadius), Math.round(pos.y - playerRadius), 2 * playerRadius, 2 * playerRadius, 0, 0, 1, 1);
     let data = avgContext.getImageData(0, 0, 1, 1).data;
     let matchScore = (Math.abs(1/(data[0] - rm)) || 0) + (Math.abs(1/(data[1] - gm)) || 0) + (Math.abs(1/(data[2] - bm)) || 0);
     if (matchScore > 2.5) {health--; waitSafe = true; if (health <= 0) {window.requestAnimationFrame(drawHackScreen); return;}}
-    else {waitSafe = false;}
+    else {waitSafe = false;}*/
   }
   if (dash) {
     for (var a = 0; a < 6; a++) {
