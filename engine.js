@@ -109,6 +109,7 @@ function loadGame(vid) {
   videoSource.src = vid.getSource("video/mp4", "small").url;
   videoSource.type = "video/mp4";
   video.setAttribute("autoplay", "");
+  video.setAttribute("crossorigin", "");
   video.appendChild(videoSource);
   pos = {x: 0, y: 0};
   health = 5;
