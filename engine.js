@@ -179,7 +179,12 @@ function drawHackScreen(t) {
   }
 }
 async function promisingPlay() {
-  try {await video.play();} catch {alert("playback error");}
+  try {
+    await video.play();
+  }
+  catch {
+    alert("playback error");
+  }
 }
 var pos = {x: 0, y: 0};
 var health = 5;
