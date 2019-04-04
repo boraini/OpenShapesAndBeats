@@ -1,0 +1,16 @@
+html, body {margin: 0; padding: 0; overflow: hidden; background-color: rgb(55, 14, 25);}
+.fullscreen {margin: 0; box-sizing: border-box; width: 100vw; height: 100vh; position: relative;}
+#game {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+@media (min-aspect-ratio: 16/9) {
+  #game {
+    height: 100%;
+    width: auto;
+  }
+}
+@media only screen and (max-width: 23cm) {
+}
