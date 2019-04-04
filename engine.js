@@ -173,10 +173,13 @@ function drawHackScreen(t) {
   }
   else {
     context.setTransform(1, 0, 0, 1, 0, 0);
-    try {await video.play();} catch {alert("playback error");}
+    promisingPlay();
     lastPlayTime = video.currentTime;
     drawGame();
   }
+}
+async function promisingPlay() {
+  try {await video.play();} catch {alert("playback error");}
 }
 var pos = {x: 0, y: 0};
 var health = 5;
