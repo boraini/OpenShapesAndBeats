@@ -173,7 +173,7 @@ function drawHackScreen(t) {
   }
   else {
     context.setTransform(1, 0, 0, 1, 0, 0);
-    video.play();
+    try {await video.play();} catch {alert("playback error");}
     lastPlayTime = video.currentTime;
     drawGame();
   }
