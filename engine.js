@@ -106,7 +106,9 @@ var canvas;
 var context;
 var video;
 var videoSource;
+var debug
 function loadGame(vid) {
+  debug = vid;
   console.log(vid.title);
   if (!video) video = document.createElement("video");
   if (!videoSource) videoSource = document.createElement("source");
@@ -119,13 +121,14 @@ function loadGame(vid) {
   pos = {x: 0, y: 0};
   health = 5;
   lastPlayTime = 0;
+  lastDashTime = 0;
   drawHackScreen();
 }
 var animLast;
 var animDur = 3000;
 var frequency = 2 * Math.PI / 2000;
 var amplitude = 40 * (Math.PI / 180);
-var playerColor = "rgb(40, 140, 189)";
+var playerColor = "rgb(88, 230, 255)";
 var playerColor2 = "rgb(16, 53, 71)";
 var evilColor = "rgb(179, 46, 120)";
 var scaling;
@@ -198,6 +201,7 @@ var lastPlayTime = 0;
 var characterSpeed = 0.5; //px per ms
 var dash = false;
 var dashSpeed = 300;
+var lastDashTime = 0;
 var dashParticleSpeed = 0.1;
 var playerRadius = 8;
 var waitSafe = false;
@@ -218,7 +222,7 @@ function drawGame() {
   let dT = (video.currentTime - lastPlayTime) * 1000;
   lastPlayTime = video.currentTime;
   let dist = Math.sqrt((joyPos.x - pos.x) * (joyPos.x - pos.x) + (joyPos.y - pos.y) * (joyPos.y - pos.y));
-  if (dist > characterSpeed * dT) {
+  if (dist > (dash ? dashSpeed : (characterSpeed * dT))) {
     pos.x += (joyPos.x - pos.x) / dist * (dash ? dashSpeed : (characterSpeed * dT)) || 0;
     pos.y += (joyPos.y - pos.y) / dist * (dash ? dashSpeed : (characterSpeed * dT)) || 0;
   }
@@ -298,5 +302,5 @@ function handleMouse(e) {
   joyPos.y = (e.clientY - bRect.top) * canvas.height / bRect.height;
 }
 function handleKeyDown(e) {
-  if (e.keyCode == 32) dash = true;
+  if (e.keyCode == 32 && video.currentTime - lastDashTime > 0.5) {dash = true; lastDashTime = video.currentTime;}
 }
