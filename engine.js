@@ -69,6 +69,7 @@
 }).call(this);
 //End of https://github.com/endlesshack/youtube-video
 window.onload = function() {
+  window.setTimeout(collapseNavs, 3000);
   canvas = document.getElementById("game");
   context = canvas.getContext("2d");
   scaling = canvas.width / 1280;
@@ -78,7 +79,7 @@ window.onload = function() {
   } catch (e) {
     return false;
   }})()) {
-    window.addEventListener("touchmove", handleTouch);
+    window.addEventListener("touchmove", handleTouch, {passive: false});
   }
   if ((() => {try {
     document.createEvent("MouseEvent");
@@ -97,6 +98,10 @@ window.onload = function() {
     loadMenu();
   }
 };
+function collapseNavs() {
+  window.scrollBy(0, 100);
+  window.scrollTo(0, 0);
+}
 var canvas;
 var context;
 var video;
@@ -109,7 +114,7 @@ function loadGame(vid) {
   videoSource.src = vid.getSource("video/mp4", "small").url;
   videoSource.type = "video/mp4";
   video.setAttribute("autoplay", "");
-  video.setAttribute("crossorigin", "");
+  //video.setAttribute("crossorigin", "");
   video.appendChild(videoSource);
   pos = {x: 0, y: 0};
   health = 5;
@@ -192,7 +197,7 @@ var health = 5;
 var lastPlayTime = 0;
 var characterSpeed = 0.5; //px per ms
 var dash = false;
-var dashSpeed = 150;
+var dashSpeed = 300;
 var dashParticleSpeed = 0.1;
 var playerRadius = 8;
 var waitSafe = false;
@@ -279,6 +284,7 @@ function drawGame() {
 }
 var joyPos = {x: 0, y: 0};
 function handleTouch(e) {
+  e.preventDefault();
   let bRect = canvas.getBoundingClientRect();
   joyPos.x = (e.touches[0].clientX - bRect.left) * canvas.width / bRect.width;
   joyPos.y = (e.touches[0].clientY - bRect.top) * canvas.height / bRect.height;
