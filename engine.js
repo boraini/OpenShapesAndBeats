@@ -34,8 +34,8 @@
         return callback(video);
       }
     }).bind(xhttp, id, callback);
-    xhttp.open("GET", "https://www.youtube.com/get_video_info?video_id=" + id, true);
-    //xhttp.open("GET", "https://jsonp.afeld.me/?callback=?&url=https://www.youtube.com/get_video_info?video_id=" + id, true);
+    //xhttp.open("GET", "https://www.youtube.com/get_video_info?video_id=" + id, true);
+    xhttp.open("GET", "https://jsonp.afeld.me/?callback=?&url=https://www.youtube.com/get_video_info?video_id=" + id, true);
     //xhttp.open("GET", "https://crossorigin.me/https://www.youtube.com/get_video_info?video_id=" + id, true);
     xhttp.send();
   };
